@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quasar Homepage</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Background -->
+  <div class="background">
+    <div class="background-gradient"></div>
+    <div class="stars"></div>
+    <div class="glow glow-top-right"></div>
+    <div class="glow glow-bottom-left"></div>
+  </div>
+
+  <div class="container">
+    <!-- Header -->
+    <header class="header glass">
+      <div class="logo-section">
+        <div class="logo-circle">
+          <div class="logo-inner"></div>
+        </div>
+        <h1>    Quasar<span class="text-highlight">Home</span></h1>
+      </div>
+      
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Clock -->
+      <div class="clock">
+        <div id="time" class="time">--:--</div>
+        <div id="date" class="date">Loading...</div>
+      </div>
+
+      <!-- Search -->
+      <form class="search-bar" onsubmit="handleSearch(event)">
+        <input type="text" id="search" placeholder="Search or enter website" />
+        <span class="icon">&#128269;</span>
+      </form>
+
+      <!-- Favorites -->
+      <section class="favorites">
+        <h2>Quick Access</h2>
+        <div class="favorite-grid">
+          <a href="https://google.com" class="card bg-white text-dark">G<br/>Google</a>
+          <a href="https://youtube.com" class="card bg-red text-white">Y<br/>YouTube</a>
+          <a href="https://github.com" class="card bg-dark text-white">G<br/>GitHub</a>
+          <a href="https://twitter.com" class="card bg-blue text-white">T<br/>Twitter</a>
+          <a href="https://netflix.com" class="card bg-deep-red text-white">N<br/>Netflix</a>
+          <a href="https://amazon.com" class="card bg-amber text-white">A<br/>Amazon</a>
+          <a href="https://reddit.com" class="card bg-orange text-white">R<br/>Reddit</a>
+          <a href="https://wikipedia.org" class="card bg-light text-dark">W<br/>Wikipedia</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      Quasar Browser Homepage &copy; <span id="year"></span>
+    </footer>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('time').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('date').textContent = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function handleSearch(e) {
+      e.preventDefault();
+      const value = document.getElementById('search').value.trim();
+      if (!value) return;
+      let url = value;
+      if (!/^https?:\/\//.test(url)) {
+        if (!value.includes('.') || value.includes(' ')) {
+          url = 'https://www.google.com/search?q=' + encodeURIComponent(value);
+        } else {
+          url = 'https://' + value;
+        }
+      }
+      window.location.href = url;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
