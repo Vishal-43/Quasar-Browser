@@ -21,13 +21,12 @@ A **lightweight, tabbed web browser** built using **Python and PyQt**. Quasar Br
 ## 🚀 Installation  
 
 1. Clone the repository:  
-   ```bash
-   git clone https://github.com/your-username/quasar-browser.git
-   cd quasar-browser
+   ```git clone https://github.com/your-username/quasar-browser.git
+   ```cd quasar-browser
 Install dependencies:
 
-bash
-pip install PyQt5 PyQtWebEngine
+
+```pip install PyQt5 PyQtWebEngine
 Run the browser:
 
 bash
